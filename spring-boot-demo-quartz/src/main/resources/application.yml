@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/quartz?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai?characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: '0429'
+  quartz:
+    job-store-type: jdbc # 定时任务的数据保存到jdbc即数据库中
+    jdbc:
+      # embedded：默认
+      # always：启动的时候初始化表，我们只在第一次启动的时候用它来自动创建表，然后改回embedded即可，不然数据每次都会被清空
+      # never：启动的时候不初始化表，也不知道和embedded有什么不同
+      initialize-schema: always
+#        initialize-schema: embedded
