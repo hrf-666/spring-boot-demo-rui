@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -30,6 +31,15 @@ import java.util.concurrent.TimeUnit;
 public class SampleXxlJob {
     private static Logger logger = LoggerFactory.getLogger(SampleXxlJob.class);
 
+    /**
+     * 示例
+     */
+    @XxlJob("clockInJobHandler")
+    public void clockInJobHandler() throws Exception {
+        logger.info("clockInJobHandler 正在执行打卡校验" + new Date());
+
+    }
+
 
     /**
      * 1、简单任务示例（Bean模式）
@@ -37,7 +47,7 @@ public class SampleXxlJob {
     @XxlJob("demoJobHandler")
     public void demoJobHandler() throws Exception {
         XxlJobHelper.log("XXL-JOB, Hello World.");
-
+        logger.info("demoJobHandler XXL-JOB, Hello World." + new Date());
         for (int i = 0; i < 5; i++) {
             XxlJobHelper.log("beat at:" + i);
             TimeUnit.SECONDS.sleep(2);
